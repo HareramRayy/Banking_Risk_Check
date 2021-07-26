@@ -1,0 +1,66 @@
+1)After starting hdfs,yarn,mapreduce put input file in hdfs.
+ 
+	>hadoop fs -put source_path destination_path_with_file_name.
+ 
+2)then start hive
+	>hive
+
+3)To see database
+	>show database;
+4)to create database
+	>create database db_name;
+  
+	ex:
+		>create database bank;
+5)To use a database
+	>use db_name;
+	ex:
+		>use bank;
+6)To create table 
+	>create table table_name(variable_name variable_data_type,variable_name variable_data_type,...............)
+		>row/col format delimited
+		>fields termineted by 'seperate_symbol'
+		>stored as file_type_file; or >stored as file_type_file location 'path of data in hdfs';
+
+	ex:
+		>create table bankloan(cos_id,cos_name,loan_no,amount,currency,amount_paid,status,risk,place,reason)
+			>row format delimited
+			>fields termineted by ','
+			>stored as textfile;
+7)To load data from hdfs to data warehouse
+	>load data inpath 'path_of_data_in_hdfs' into table table_name;
+	
+	ex:
+		>load data inpath '/myhare/input.txt' into table bankloan;
+
+8)To see data 
+	>select *from table_name;
+	
+	ex:
+		select *from bankloan;
+9)To see data types of variables;
+	>describe table_name;
+	ex:
+		>describe bankloan;
+10)avg(column_name) function used to find average value in a column.Return type is double.
+  ================================================================================================================================================================
+||	   ||				    ||														          ||
+||double   ||	avg(col), avg(DISTINCT col) ||	Returns the average of the elements in the group or the average of the distinct values of the column in the group ||
+  ================================================================================================================================================================
+
+		>select avg(column_name) from table_name;
+	ex:
+		>select avg(risk) from bankloan;
+11)selection of data from data warehouse from multiple columns based on column value.
+	ex:
+		>select place,avg(risk) from bankloan group by place;
+12)substring(col_name,start_point,number of charecters from start point) will return string.//array index in hive starts from 1 and in pig from 0.
+	ex1:
+		>select substring(loan_no,2,2),avg(risk) from bankloan group by substring(loan_number,2,2); //
+	ex2:	
+		>select substring(loan_no,2,2),place,avg(risk) from bankloan group by substring(loan_number,2,2),place;
+13)To delete or see database from hdfs command.
+	>hadoop fs -ls user/hive/warehouse
+14)To delete a directory in hdfs 
+	>hadoop fs -rmr hdfs_file_path_to_delete
+
