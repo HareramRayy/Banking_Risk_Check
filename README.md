@@ -1,7 +1,7 @@
 # Bank_Project(Hadoop Project)
 
 <h2>Objective of this project are: </h2>
-<div>1) First part of this project is used to store a large amout of Data generated in banks in a Distributed manner(HDFS) So that Computing can be fast. <br>
+<div>1) First part of this project is used to store a large amount of Data generated in banks in a Distributed manner(HDFS) So that Computing can be fast. <br>
   2) The Second part of this project uses data collected in HDFS and MapReduce algorithms to calculate the Risk of giving a Loan to a person on the basis of, </h>
         <div>&emsp; &emsp; 1)Location of person <br>
              &emsp; &emsp;  2)Type of Loan <br>
